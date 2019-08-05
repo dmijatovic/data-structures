@@ -1,0 +1,26 @@
+{
+  "name": "data-structures",
+  "version": "1.0.0",
+  "description": "data structures Udemy course",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest --watchAll"
+  },
+  "keywords": [
+    "data",
+    "structures",
+    "Udemy"
+  ],
+  "author": "Dusan Mijatovic",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "rollup": "^1.16.2"
+  }
+}
