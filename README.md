@@ -85,3 +85,13 @@ Proper hash function:
 - is fast:
 - spreads/distributes data properly over table
 - is deterministic, it returns always same output with same input
+
+## Undirectional and directional graph data structure
+
+Graph is a sort of tree that has multiple links between the nodes. The links can be unidirectional or multi-directional/
+
+### Traversing graph
+
+- Depth first (DFS): followin the 'depth' of links from first node always take one node and go deeper.
+
+- Breath first (BFS): following first all links from one node before proceeding to next node.
