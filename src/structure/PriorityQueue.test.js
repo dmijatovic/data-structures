@@ -8,7 +8,7 @@ describe('PriorityQueue data structure',()=>{
       {prio:1,value:"Task with lowest prio"},
       {prio:2,value:"Task with moderate prio"},
       {prio:30,value:"Task with highest prio"},
-      {prio:6,value:"Task with highest prio"},
+      {prio:6,value:"Task with moderate prio"},
     ]
     pq = new PriorityQueue()
     tasks.map(task=>{

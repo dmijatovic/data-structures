@@ -12,8 +12,13 @@ class Node{
 }
 
 export class PriorityQueue{
-  constructor(){
+  /**
+   * 
+   * @param {String} type desc value means highest value at the top
+   */
+  constructor(type="desc"){
     this.queue = []
+    this.type = type
   }
   getQueue(){
     return this.queue
@@ -28,14 +33,26 @@ export class PriorityQueue{
     if (pin < 0) return true
     let parent = this.queue[pin]
 
-    if (child.prio > parent.prio){
-      //swap values
-      this.queue[pin] = child
-      this.queue[index] = parent
-      //call it again with new child position
-      this.bubbleUp(pin)
-    } else {
-      return true
+    if (this.type==="desc"){
+      if (child.prio > parent.prio){
+        //swap values
+        this.queue[pin] = child
+        this.queue[index] = parent
+        //call it again with new child position
+        this.bubbleUp(pin)
+      } else {
+        return true
+      }
+    }else{
+      if (child.prio < parent.prio){
+        //swap values
+        this.queue[pin] = child
+        this.queue[index] = parent
+        //call it again with new child position
+        this.bubbleUp(pin)
+      } else {
+        return true
+      }
     }
   }
   add(priority, value){
@@ -49,8 +66,8 @@ export class PriorityQueue{
    */
   takeHighestPrio(){
     let len = this.queue.length
-    if (len===0) return null 
-    //get highest prio item 
+    if (len===0) return null
+    //get highest prio item
     //it is top item
     let hp = this.queue[0]
     //get last item
@@ -62,7 +79,7 @@ export class PriorityQueue{
       this.bubbleDown(0)
     }
     //return highest prio item
-    return hp 
+    return hp
   }
   /**
    * Move item down the heap if lower priority.
@@ -83,25 +100,48 @@ export class PriorityQueue{
     // console.log("bubbleDown...lChild...", lChild)
     // console.log("bubbleDown...rChild...", rChild)
 
-    if (lChild &&
-      lChild.prio > rChild.prio &&
-      lChild.prio > parent.prio){
-      //swap lChild and parent
-      this.queue[lpos] = parent
-      this.queue[index] = lChild
-      //call bubleDown again
-      this.bubbleDown(lpos)
-    } else if (rChild &&
-      rChild.prio > lChild.prio &&
-      rChild.prio > parent.prio){
-      //swap rChild and parent
-      this.queue[rpos] = parent
-      this.queue[index] = rChild
-      //call bubleDown again
-      this.bubbleDown(rpos)
-    } else {
-      //no swap
-      return true
+    if (this.type==="desc"){
+      if (lChild && rChild &&
+        lChild.prio > rChild.prio &&
+        lChild.prio > parent.prio){
+        //swap lChild and parent
+        this.queue[lpos] = parent
+        this.queue[index] = lChild
+        //call bubleDown again
+        this.bubbleDown(lpos)
+      } else if (rChild && lChild &&
+        rChild.prio > lChild.prio &&
+        rChild.prio > parent.prio){
+        //swap rChild and parent
+        this.queue[rpos] = parent
+        this.queue[index] = rChild
+        //call bubleDown again
+        this.bubbleDown(rpos)
+      } else {
+        //no swap
+        return true
+      }
+    } else{
+      if (lChild && rChild &&
+        lChild.prio < rChild.prio &&
+        lChild.prio < parent.prio){
+        //swap lChild and parent
+        this.queue[lpos] = parent
+        this.queue[index] = lChild
+        //call bubleDown again
+        this.bubbleDown(lpos)
+      } else if (rChild && lChild &&
+        rChild.prio < lChild.prio &&
+        rChild.prio < parent.prio){
+        //swap rChild and parent
+        this.queue[rpos] = parent
+        this.queue[index] = rChild
+        //call bubleDown again
+        this.bubbleDown(rpos)
+      } else {
+        //no swap
+        return true
+      }
     }
   }
 }
